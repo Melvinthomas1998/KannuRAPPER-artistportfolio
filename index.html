@@ -3,161 +3,373 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Official premium portfolio for KannuRAPPER: Malayalam rap, cinematic projects, spoken word, and visual storytelling.">
-    <meta name="theme-color" content="#0D0D0D">
-    <meta property="og:title" content="KannuRAPPER | Premium Portfolio">
-    <meta property="og:description" content="Rembrandt Dark Minimalism portfolio for KannuRAPPER's music, cinema, and literary work.">
-    <meta property="og:type" content="website">
-    <meta property="og:image" content="assets/images/hero_kannurapper_1779028936745.png">
+    <meta name="description" content="KannuRAPPER Premium Portfolio: Editorial Dark Luxury redesign featuring Malayalam rap, stark spoken word, and independent cinema.">
     <title>KannuRAPPER | Premium Portfolio</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Oswald:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <a class="skip-link" href="#main">Skip to content</a>
+    <div class="cursor"></div>
+    <canvas id="canvas-grain"></canvas>
 
-    <header class="site-header" data-header>
-        <a class="brand" href="#hero" aria-label="KannuRAPPER home">KannuRAPPER</a>
-        <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav" data-nav-toggle>
-            <span></span>
+    <header class="site-header" id="nav">
+        <a href="#hero" class="brand hover nl">KannuRAPPER</a>
+        <nav class="desktop-nav">
+            <a href="#vault" class="hover nl">Music Vault</a>
+            <a href="#poem" class="hover nl">Mercy Poem</a>
+            <a href="#film" class="hover nl">Short Film</a>
+            <a href="#about" class="hover nl">About</a>
+            <a href="#connect" class="hover nl">Connect</a>
+            <a href="https://youtube.com/@KannuRAPPER" target="_blank" class="yt-btn hover">YouTube</a>
+        </nav>
+        <button class="burger hover" id="burger" aria-label="Toggle Menu">
             <span></span>
             <span></span>
         </button>
-        <nav id="site-nav" class="site-nav" data-nav>
-            <a href="#vault">Discography</a>
-            <a href="#cinema">Cinematics</a>
-            <a href="#literary">Literary</a>
-            <a href="#connect">Connect</a>
-        </nav>
     </header>
 
-    <main id="main">
-        <section id="hero" class="hero">
-            <div class="hero__media" aria-hidden="true"></div>
-            <div class="hero__content reveal">
-                <p class="eyebrow">Official Master Portfolio</p>
-                <h1>KannuRAPPER</h1>
-                <p class="hero__copy">Malayalam rap, stark spoken word, and independent cinema shaped through heavy shadow, restrained gold, and autobiographical force.</p>
-                <div class="hero__actions">
-                    <a class="button button--primary" href="#vault">Enter the Vault</a>
-                    <a class="button button--ghost" href="https://youtube.com/@KannuRAPPER" target="_blank" rel="noopener noreferrer">YouTube Channel</a>
+    <nav class="mob-nav">
+        <a href="#vault" class="mob-link hover">Music Vault</a>
+        <a href="#poem" class="mob-link hover">Mercy Poem</a>
+        <a href="#film" class="mob-link hover">Short Film</a>
+        <a href="#about" class="mob-link hover">About</a>
+        <a href="#connect" class="mob-link hover">Connect</a>
+    </nav>
+
+    <section id="hero" class="hero">
+        <div class="hero-bg"></div>
+        <div class="hero-overlay"></div>
+        <span class="eyebrow" data-aos>Official Master Portfolio</span>
+        <h1 data-aos>KannuRAPPER</h1>
+        <div class="gold-rule" data-aos></div>
+        <p class="hero-tagline" data-aos>Malayalam rap, stark spoken word, and independent cinema shaped through heavy shadow, restrained gold, and autobiographical force.</p>
+        <div data-aos>
+            <a href="#vault" class="button button--primary hover nl">Enter the Vault</a>
+            <a href="#poem" class="button hover nl" style="margin-left: 1rem;">Read Mercy Poem</a>
+        </div>
+        <div class="stats-bar" data-aos>
+            <div>12+ <span>Tracks</span></div>
+            <div>2 <span>Channels</span></div>
+            <div>1 <span>Short Film</span></div>
+            <div><span>Kerala</span></div>
+        </div>
+        <div class="marquee-vertical">KannuRAPPER Premium Portfolio</div>
+    </section>
+
+    <section class="manifesto">
+        <div class="gold-rule" data-aos></div>
+        <blockquote data-aos>"The meaning of life is to find your gift. The purpose of life is to give it away."</blockquote>
+        <span class="eyebrow" data-aos>Share Song, KannuRAPPER</span>
+    </section>
+
+    <section id="vault" class="section">
+        <div class="vault-container">
+            <!-- Track 01 -->
+            <div class="track-row" data-aos>
+                <div class="track-img hover">
+                    <img src="assets/images/avastha_track_1779028558924.png" alt="AVASTHA">
+                </div>
+                <div class="track-content">
+                    <span class="track-meta">01 / Main Track · Malayalam Rap</span>
+                    <h3>AVASTHA (■■■■■)</h3>
+                    <p class="track-desc">Explores the state of modern existence through the lens of a Kerala middle-class boy navigating expatriation. The track delivers social commentary on rapid modern life, hypocrisy, and the specific loneliness of foreign survival. Ends not with resolution — but with clarity.</p>
+                    <p class="visual-concept">Stark monochrome urban frame. Isolated silhouette under flickering neon streetlight. Red long-exposure traffic streaks cut the frame — external chaos vs internal isolation.</p>
+                    <a href="https://youtube.com/@KannuRAPPER" target="_blank" class="button hover">Listen on YouTube</a>
                 </div>
             </div>
-        </section>
 
-        <section id="vault" class="section vault">
-            <div class="section__intro reveal">
-                <p class="eyebrow">Interactive Audio Vault</p>
-                <h2>Discography</h2>
-                <p>Tracks arranged as visual chapters: isolation, failure, resilience, gratitude, companionship, and self-rebuilding.</p>
+            <!-- Track 02 -->
+            <div class="track-row" data-aos>
+                <div class="track-img hover">
+                    <img src="assets/images/introvert_track_1779028616803.png" alt="Introvert's Internal Song">
+                </div>
+                <div class="track-content">
+                    <span class="track-meta">02 / Core Track · Autobiographical</span>
+                    <h3>Introvert's Internal Song</h3>
+                    <p class="track-desc">The root system beneath all other tracks. Traces the full arc of an introverted mind from childhood to adulthood — mapping social expectations as cage architecture, and arriving at the conscious decision to stop apologising for how one is built.</p>
+                    <p class="visual-concept">Dalí-inspired surreal landscape. Architectural barriers dissolve into dark cosmic layers. Antique writing desk spotlit — glowing handwritten pages the only light source.</p>
+                    <a href="https://youtube.com/@introvertmtunofficial" target="_blank" class="button hover">Listen on YouTube</a>
+                </div>
             </div>
 
-            <div class="track-grid">
-                <article class="track-card reveal">
-                    <img src="assets/images/avastha_track_1779028558924.png" alt="Monochrome street scene with a solitary figure under neon light" loading="lazy">
-                    <div class="track-card__body">
-                        <p class="track-card__meta">Main Track / Malayalam Rap</p>
-                        <h3>AVASTHA</h3>
-                        <p>A gritty social commentary on modern chaos, accountability, family obligation, expatriation, isolation, and rebuilding from the ground up.</p>
-                        <a href="https://youtube.com/@KannuRAPPER" target="_blank" rel="noopener noreferrer">Listen on YouTube</a>
-                    </div>
-                </article>
-
-                <article class="track-card reveal">
-                    <img src="assets/images/introvert_track_1779028616803.png" alt="Surreal dark room with a lit writing desk and lyric sheets" loading="lazy">
-                    <div class="track-card__body">
-                        <p class="track-card__meta">Autobiographical / Core Track</p>
-                        <h3>Introvert's Internal Song</h3>
-                        <p>A personal map of an introverted mind, where silence becomes a tactical refuge instead of emotional weakness.</p>
-                        <a href="https://youtube.com/@introvertmtunofficial" target="_blank" rel="noopener noreferrer">Visit Introvert MTU</a>
-                    </div>
-                </article>
-
-                <article class="track-card reveal">
-                    <img src="assets/images/tholvi_track_1779028665639.png" alt="Uneven running path and mist lit by amber light" loading="lazy">
-                    <div class="track-card__body">
-                        <p class="track-card__meta">Malayalam Lyricism / Resilience</p>
-                        <h3>THOLVI RAP</h3>
-                        <p>A hard-hitting meditation on failure that turns real losses into material for psychological resilience.</p>
-                        <a href="https://youtube.com/@KannuRAPPER" target="_blank" rel="noopener noreferrer">Listen on YouTube</a>
-                    </div>
-                </article>
-
-                <article class="track-card reveal">
-                    <img src="assets/images/fighter_track_1779028902651.png" alt="Hands wrapped in athletic tape under warm Rembrandt-style light" loading="lazy">
-                    <div class="track-card__body">
-                        <p class="track-card__meta">Empowerment / Narrative Rap</p>
-                        <h3>The Fighter Song</h3>
-                        <p>A grounded exploration of manhood, emotional repair, courage, and the quiet discipline of protecting inner peace.</p>
-                        <a href="https://youtube.com/@KannuRAPPER" target="_blank" rel="noopener noreferrer">Listen on YouTube</a>
-                    </div>
-                </article>
-
-                <article class="track-card track-card--text reveal">
-                    <div class="track-card__body">
-                        <p class="track-card__meta">Melodic Outro</p>
-                        <h3>Gratitude Song</h3>
-                        <p>A calm thank-you to the people, limits, mentors, and difficult lessons that formed the artist's identity.</p>
-                        <a href="https://www.youtube.com/watch?v=PcqzgKCPtOw" target="_blank" rel="noopener noreferrer">Listen on YouTube</a>
-                    </div>
-                </article>
-
-                <article class="track-card track-card--text reveal">
-                    <div class="track-card__body">
-                        <p class="track-card__meta">Philosophical Outro</p>
-                        <h3>Share Song</h3>
-                        <p>A conscious rap piece about purpose, generosity, legacy, and giving away the gift once it is found.</p>
-                        <a href="https://www.youtube.com/watch?v=2KunYMIZJz8" target="_blank" rel="noopener noreferrer">Listen on YouTube</a>
-                    </div>
-                </article>
+            <!-- Track 03 -->
+            <div class="track-row" data-aos>
+                <div class="track-img hover">
+                    <img src="assets/images/tholvi_2.png" alt="THOLVI RAP">
+                </div>
+                <div class="track-content">
+                    <span class="track-meta">03 / Malayalam Lyricism · Resilience</span>
+                    <h3>THOLVI RAP (■■■■■)</h3>
+                    <p class="track-desc">Descends into the actual texture of failure — not the triumphant narrative of quick recovery, but the specific, humiliating, quiet moments of collapse. Argues that defeat is not the enemy of resilience but the material from which it is constructed.</p>
+                    <p class="visual-concept">Deep-focus trail in dense early morning fog. Raw stone steps lit on one side by sharp amber guide strip — the only warmth in a cold uncertain landscape.</p>
+                    <a href="https://youtube.com/@KannuRAPPER" target="_blank" class="button hover">Listen on YouTube</a>
+                </div>
             </div>
-        </section>
 
-        <section id="cinema" class="section cinema">
-            <div class="section__intro reveal">
-                <p class="eyebrow">Cinematic Portal</p>
-                <h2>BURN</h2>
-                <p>An independent short film extension of the music, built around stripping away old identities so a new self can begin.</p>
+            <!-- Track 04 -->
+            <div class="track-row" data-aos>
+                <div class="track-img hover">
+                    <img src="assets/images/31_cover_final.png" alt="31 Song">
+                </div>
+                <div class="track-content">
+                    <span class="track-meta">04 / Milestone Track · Reflective Electronic</span>
+                    <h3>31 Song</h3>
+                    <p class="track-desc">Captures the exact emotional coordinates of a life pivot at age 31. Old heartbreaks outgrown — not healed. Melancholic electronic production gives way to something harder and more certain. Not a rebirth. A precise recalibration.</p>
+                    <p class="visual-concept">Industrial matte setting. Vintage analog dial locked at 11:59. A razor-sharp gold beam cuts horizontally — a decisive temporal pivot captured in metal and light.</p>
+                    <a href="https://youtube.com/@KannuRAPPER" target="_blank" class="button hover">Listen on YouTube</a>
+                </div>
             </div>
-            <div class="cinema-panel reveal">
-                <a class="cinema-frame" href="https://youtube.com/@KannuRAPPER" target="_blank" rel="noopener noreferrer" aria-label="Watch Burn short film on YouTube">
-                    <span>Watch Short Film</span>
+
+            <!-- Track 05 -->
+            <div class="track-row" data-aos>
+                <div class="track-img hover">
+                    <img src="assets/images/the_fighter_song_cover.png" alt="The Fighter Song">
+                </div>
+                <div class="track-content">
+                    <span class="track-meta">05 / Empowerment · Narrative Rap</span>
+                    <h3>The Fighter Song (Manhood)</h3>
+                    <p class="track-desc">Strips away the mythology of masculine hardness to expose what strength actually requires: the courage to tend to old wounds before they become permanent damage. Redefines the fighter as one who chooses, repeatedly, to rebuild.</p>
+                    <p class="visual-concept">Rembrandt-style portraiture. Hands wrapping raw cotton athletic tape in abandoned gymnasium. Warm historical side-lighting on the texture of preparation, not combat.</p>
+                    <a href="https://youtube.com/@KannuRAPPER" target="_blank" class="button hover">Listen on YouTube</a>
+                </div>
+            </div>
+
+            <!-- Track 06 -->
+            <div class="track-row" data-aos>
+                <div class="track-img hover">
+                    <img src="assets/images/gratitude_cover.png" alt="Gratitude Song">
+                </div>
+                <div class="track-content">
+                    <span class="track-meta">06 / Melodic Outro · Mixed Dialect</span>
+                    <h3>Gratitude Song</h3>
+                    <p class="track-desc">The exhale in a body of work built on survival. Honours a protective mother and early mentors with precision — not sentimentality. Acknowledges challenges as the gifts they eventually became. Not the loudest track. Possibly the most important.</p>
+                    <p class="visual-concept">Golden-hour light through unadorned window pane. Sharp shadow geometry on bare concrete — warmth finding structure, gratitude made architectural.</p>
+                    <a href="https://www.youtube.com/watch?v=PcqzgKCPtOw" target="_blank" class="button hover">Listen on YouTube</a>
+                </div>
+            </div>
+
+            <!-- Track 07 -->
+            <div class="track-row" data-aos>
+                <div class="track-img hover">
+                    <img src="assets/images/megham_cover.png" alt="Meghasandesham">
+                </div>
+                <div class="track-content">
+                    <span class="track-meta">07 / YouTube Shorts · Long Distance</span>
+                    <h3>Meghasandesham</h3>
+                    <p class="track-desc">Reinvents the classical Kerala messenger-cloud motif for the modern long-distance relationship — time zones instead of monsoons. Holds hope and structural anxiety in tension without resolving either. A message sent with full knowledge the receiver is out of reach.</p>
+                    <p class="visual-concept">Split aesthetic — two contrasting horizons or weather patterns. A single glowing gold thread crosses the dark canvas between them. Distance made visible, connection made fragile.</p>
+                    <a href="https://youtube.com/@KannuRAPPER" target="_blank" class="button hover">Listen on YouTube</a>
+                </div>
+            </div>
+
+            <!-- Track 08 -->
+            <div class="track-row" data-aos>
+                <div class="track-img hover">
+                    <img src="assets/images/karayam_cover_final.png" alt="Karayam">
+                </div>
+                <div class="track-content">
+                    <span class="track-meta">08 / YouTube Shorts · Emotional Liberation</span>
+                    <h3>Karayam (■■■■■)</h3>
+                    <p class="track-desc">A direct, clinical dismantling of toxic masculinity's central prohibition: men cannot cry. Frames emotional expression as psychological necessity, not weakness. The urgency of someone who has watched the alternative unfold.</p>
+                    <p class="visual-concept">Dark textured macro. Water droplets dissolving a charcoal surface — grief as cleansing mechanism, not catastrophe. The charcoal gives way. That is the point.</p>
+                    <a href="https://youtube.com/@KannuRAPPER" target="_blank" class="button hover">Listen on YouTube</a>
+                </div>
+            </div>
+
+            <!-- Track 09 -->
+            <div class="track-row" data-aos>
+                <div class="track-img hover">
+                    <img src="assets/images/share_song_cover.png" alt="Share Song">
+                </div>
+                <div class="track-content">
+                    <span class="track-meta">09 / Conscious Rap · Philosophical</span>
+                    <h3>Share Song</h3>
+                    <p class="track-desc">Built on a single irreducible premise: the meaning of life is to find your gift; the purpose is to give it away. Interrogates the act of withholding — art, pain, wisdom — as the quiet dismantling of one's own legacy.</p>
+                    <p class="visual-concept">Dark minimalist grid. Isolated boxes extend gold lines outward, merging at a radiating central geometric node — isolation becoming network.</p>
+                    <a href="https://www.youtube.com/watch?v=2KunYMIZJz8" target="_blank" class="button hover">Listen on YouTube</a>
+                </div>
+            </div>
+
+            <!-- Track 10 -->
+            <div class="track-row" data-aos>
+                <div class="track-img hover">
+                    <img src="assets/images/kodum_cover.png" alt="Kodum Cringe Koottupaattu">
+                </div>
+                <div class="track-content">
+                    <span class="track-meta">10 / Featured · Companionship</span>
+                    <h3>Kodum Cringe Koottupaattu</h3>
+                    <p class="track-desc">The most tender piece in the vault beneath a self-deprecating title. Describes love through the inventory of shared smallness — cold cloths, split lemon candies, checked ginger coffee.</p>
+                    <div class="lyric-block">
+                        "Small shared boundaries, split lemon candies..."
+                    </div>
+                    <p class="visual-concept">Two slightly asymmetric charcoal shapes on absolute black. A single warm gold spotlight binding them — beauty found in small shared boundaries.</p>
+                    <a href="https://youtube.com/@KannuRAPPER" target="_blank" class="button hover">Listen on YouTube</a>
+                </div>
+            </div>
+
+            <!-- Track 11 -->
+            <div class="track-row" data-aos>
+                <div class="track-img hover">
+                    <img src="assets/images/thantha_vibe_cover.png" alt="Thantha Vibe Song">
+                </div>
+                <div class="track-content">
+                    <span class="track-meta">11 / Conscious · Mindful Realism</span>
+                    <h3>Thantha Vibe Song (■■■■ ■■■■)</h3>
+                    <p class="track-desc">A veteran critique of the modern youth experience: screen addiction, normalised sleep deprivation, substance abuse as socio-economic sabotage. Concludes with a framework delivered with hard-earned clarity: the best defence is never entering these systems.</p>
+                    <p class="visual-concept">Weathered wood vs shattered glass emitting cold blue glow. Split diagonally by warm gold ray — organic wisdom overcoming technological noise, made structural.</p>
+                    <a href="https://youtube.com/@KannuRAPPER" target="_blank" class="button hover">Listen on YouTube</a>
+                </div>
+            </div>
+
+            <!-- Track 12 -->
+            <div class="track-row" data-aos>
+                <div class="track-img hover">
+                    <video src="assets/images/forgiveness_cover.mp4" autoplay loop muted playsinline poster="assets/images/forgive_cover_1.png"></video>
+                </div>
+                <div class="track-content">
+                    <span class="track-meta">12 / Thematic Pillars · Ambient Interludes</span>
+                    <h3>Forgiveness & Letting Go</h3>
+                    <p class="track-desc">Twin concept tracks forming the emotional terminus of the vault. <strong>Forgiveness Song:</strong> A relentless, three-wave release — forgiving those who wronged you, the traps they laid, and finally yourself — arriving at the only truth that makes forgiveness worth it: you are not doing it for them. You are doing it so the wound can stop being a wound, so you can become the medicine, so the desert heat of everything you have been carrying finally, mercifully, melts.<br><br><strong>Let Go:</strong> Let Go is an act of radical excavation — not a gentle release but a deliberate, line-by-line inventory of every wound, every betrayal, every poisoned memory you have been gripping like a weapon against yourself. The song understands that we hold on not out of love for the pain, but out of the illusion that holding it keeps us safe — and it dismantles that illusion with one unsparing truth: if you hold on tight, you’ll be wounded more. Let go to heal the wounds.</p>
+                    <p class="visual-concept">Light through mist — release and diffusion made visible.</p>
+                    <div>
+                        <a href="https://youtube.com/watch?v=kyAM0yiLx9w" target="_blank" class="button hover">Listen Forgiveness</a>
+                        <a href="https://youtube.com/watch?v=lwD35sElBB4" target="_blank" class="button hover" style="margin-left: 0.5rem;">Listen Let Go</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="poem" class="split-section">
+        <div class="split-img">
+            <img src="assets/images/mercy_poem_cover.png" alt="Mercy Poem Open Book">
+        </div>
+        <div class="split-content" data-aos>
+            <span class="eyebrow">Core Literary Piece · Spoken Word</span>
+            <h2 class="display">Mercy Poem</h2>
+            <p style="margin: 2rem 0; color: var(--muted); font-size: 1.15rem;">The Mercy Poem is an inward revolution — a quiet, unflinching demand that you extend to yourself the same tenderness you have spent a lifetime waiting for others to give you. Where most of KannuRAPPER’s work faces outward into the world’s weight, this poem turns inward and names the subtler cruelty: the wounds you reopen, the wings you clip, the scars you will not let heal — not because the world keeps hurting you, but because you have learned to do it yourself.<br><br>Its pivot is radical in its ordinariness — biryani, ice cream, off-key singing, morning light — because the poem understands that self-compassion does not arrive as a grand gesture; it arrives as a small permission, repeated daily, until it becomes a life. At its core lives a single devastating truth: "Do for yourself what you yearn for from another" — the love you have been waiting for is not absent. It is simply misdirected.</p>
+            <a href="https://youtube.com/@KannuRAPPER" target="_blank" class="button button--primary hover">Watch the Performance</a>
+        </div>
+    </section>
+
+    <section id="film" class="split-section">
+        <div class="split-img">
+            <img src="assets/images/burn_film_cover.png" alt="BURN Short Film">
+            <div class="play-btn-overlay">
+                <a href="https://youtube.com/watch?v=ea4wMg-WAwg" target="_blank" class="play-btn hover" aria-label="Watch BURN Film">
+                    <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
                 </a>
-                <div class="cinema-panel__copy">
-                    <h3>Featured Cinematic Project</h3>
-                    <p>Experimental lighting, minimal dialogue, and heavy shadows turn the film into a visual companion to the music: a controlled burn of memory, pain, and renewal.</p>
+            </div>
+        </div>
+        <div class="split-content" data-aos>
+            <span class="eyebrow">Award-Winning Silent Short Film</span>
+            <h2 class="display">BURN</h2>
+            <p style="margin: 2rem 0; color: var(--muted); font-size: 1.15rem;">BURN is a silent short film that confronts one of the defining crises of our time through imagery alone — no dialogue, no narration, only the accumulated weight of what we have done to the world we live in. The film traces the relationship between human action and environmental consequence: how the choices made in factories, cities, and everyday life accumulate into something irreversible — polluted skies, dying ecosystems, a planet absorbing damage it was never designed to carry.<br><br>By stripping away language and working purely through visual storytelling, BURN reaches past the arguments and the statistics and lands directly on the feeling — the slow, heavy realisation that what burns is not just the earth, but our relationship with it.</p>
+            
+            <div class="detail-grid">
+                <div class="detail-card">
+                    <strong>Format</strong>
+                    <span>Independent Short Film</span>
+                </div>
+                <div class="detail-card">
+                    <strong>Theme</strong>
+                    <span>Climate Change & Pollution</span>
+                </div>
+                <div class="detail-card">
+                    <strong>NSFF Award</strong>
+                    <span>National Science Film Festival 2017</span>
+                </div>
+                <div class="detail-card">
+                    <strong>IISF Award</strong>
+                    <span>India Int'l Science Festival 2016</span>
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <section id="literary" class="section literary">
-            <div class="poem-card reveal" data-poem>
-                <p class="eyebrow">Core Literary Piece</p>
-                <h2>Mercy Poem</h2>
-                <p class="poem-line">Mercy is framed as an act of immense internal strength, not softness.</p>
-                <p>The piece moves from confrontation to release, examining justice, trauma, restraint, and the final freedom that comes from refusing to let cruelty define the self.</p>
-                <a class="button button--primary" href="https://youtube.com/@KannuRAPPER" target="_blank" rel="noopener noreferrer">Access on YouTube</a>
-            </div>
-        </section>
+    <!-- BURN Stills Gallery -->
+    <section class="gallery-section" data-aos>
+        <div style="text-align: center; margin-bottom: 3rem;">
+            <span class="eyebrow">Behind the Scenes</span>
+            <h3 style="color: #fff; font-size: 2.2rem; font-family: var(--font-primary);">Working Stills</h3>
+            <div class="gold-rule" style="width: 1px; height: 40px; background: var(--gold); margin: 1.5rem auto 0;"></div>
+        </div>
+        <div class="stills-grid">
+            <img src="assets/images/burn_still_1.jpg" alt="BURN Working Still 1" class="hover" data-aos>
+            <img src="assets/images/burn_still_2.jpg" alt="BURN Working Still 2" class="hover" data-aos>
+            <img src="assets/images/burn_still_3.jpg" alt="BURN Working Still 3" class="hover" data-aos>
+            <img src="assets/images/burn_still_4.jpg" alt="BURN Working Still 4" class="hover" data-aos>
+            <img src="assets/images/burn_still_5.jpg" alt="BURN Working Still 5" class="hover" data-aos>
+        </div>
+    </section>
 
-        <section id="connect" class="section connect">
-            <div class="section__intro reveal">
-                <p class="eyebrow">System Footer</p>
-                <h2>Connect</h2>
+    <section id="about" class="split-section">
+        <div class="split-img">
+            <img src="assets/images/biography_cover_2.png" alt="KannuRAPPER Portrait">
+        </div>
+        <div class="split-content" data-aos>
+            <span class="eyebrow">Artist Biography</span>
+            <h2 class="display">KannuRAPPER</h2>
+            <p style="margin: 2rem 0; color: var(--muted); font-size: 1.15rem;">KannuRAPPER is an independent artist operating at the intersection of Malayalam rap, literary spoken word, and cinematic visual storytelling. Rooted in the rich cultural landscape of Kerala, his work abandons traditional industry structures in favour of a direct, unfiltered dialogue with his audience.<br><br>Operating under a philosophy of "Rembrandt Dark Minimalism," he strips away unnecessary noise to expose the core emotional architecture of survival, isolation, and eventual self-rebuilding. Through two distinct channels — the primary music vault and the introspective Introvert MTU space — he has constructed a dense portfolio of work that values brutal honesty over aesthetic comfort.</p>
+            <div>
+                <a href="https://youtube.com/@KannuRAPPER" target="_blank" class="button hover">Main Channel</a>
+                <a href="https://youtube.com/@introvertmtunofficial" target="_blank" class="button hover" style="margin-left: 0.5rem;">Introvert MTU</a>
             </div>
-            <div class="connect-grid reveal">
-                <a href="https://youtube.com/@KannuRAPPER" target="_blank" rel="noopener noreferrer">KannuRAPPER YouTube</a>
-                <a href="https://youtube.com/@introvertmtunofficial" target="_blank" rel="noopener noreferrer">Introvert MTU</a>
-                <a href="#hero">Back to Top</a>
+        </div>
+    </section>
+
+    <section id="connect" class="split-section">
+        <div class="split-content" data-aos>
+            <span class="eyebrow">Direct Contact</span>
+            <h2 class="display">Connect</h2>
+            <p style="margin: 2rem 0; color: var(--muted); font-size: 1.15rem;">The vault is always open. Whether for collaboration, inquiry, or simply to share how a specific track resonated, all transmissions are received and reviewed.</p>
+            <div style="display: flex; gap: 1rem; margin-top: 1rem;">
+                <a href="https://youtube.com/@KannuRAPPER" target="_blank" class="button hover">YouTube</a>
+                <a href="https://youtube.com/@introvertmtunofficial" target="_blank" class="button hover">Secondary</a>
             </div>
-        </section>
-    </main>
+        </div>
+        <div class="split-content" style="background: var(--bg);" data-aos>
+            <form id="contact-form" novalidate>
+                <div class="form-success" id="form-success">Message transmitted successfully.</div>
+                <div class="form-group">
+                    <label for="name">Name</label>
+                    <input type="text" id="name" name="name" class="hover" required>
+                    <span class="f-err">Name is required</span>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" class="hover" required>
+                    <span class="f-err">Valid email is required</span>
+                </div>
+                <div class="form-group">
+                    <label for="message">Message (Optional)</label>
+                    <textarea id="message" name="message" rows="4" class="hover"></textarea>
+                </div>
+                <button type="submit" id="submit-btn" class="button button--primary hover">Transmit Message</button>
+            </form>
+        </div>
+    </section>
 
     <footer class="footer">
-        <p>&copy; 2026 KannuRAPPER. Premium portfolio website.</p>
+        <div class="footer-col">
+            <span class="brand">KannuRAPPER</span>
+            <span class="eyebrow" style="color: var(--muted);">Premium Portfolio 2026</span>
+        </div>
+        <div class="footer-col">
+            <a href="#vault" class="hover nl">Music Vault</a>
+            <a href="#poem" class="hover nl">Mercy Poem</a>
+            <a href="#film" class="hover nl">Short Film</a>
+        </div>
+        <div class="footer-col">
+            <a href="https://youtube.com/@KannuRAPPER" target="_blank" class="hover">Main Channel</a>
+            <a href="https://youtube.com/@introvertmtunofficial" target="_blank" class="hover">Introvert MTU</a>
+            <a href="#hero" class="hover nl">Back to Top</a>
+        </div>
+        <div class="copyright">
+            © 2026 KannuRAPPER. Editorial Dark Luxury. All rights reserved.
+        </div>
     </footer>
+
+    <button id="btt" class="hover nl" aria-label="Back to Top">^</button>
 
     <script src="script.js"></script>
 </body>
