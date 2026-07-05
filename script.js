@@ -1,3 +1,22 @@
+// 00 Lenis Smooth Scroll Setup
+const lenis = new Lenis({
+  duration: 1.2,
+  easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+  direction: 'vertical',
+  gestureDirection: 'vertical',
+  smooth: true,
+  mouseMultiplier: 1,
+  smoothTouch: false,
+  touchMultiplier: 2,
+  infinite: false,
+})
+
+function raf(time) {
+  lenis.raf(time)
+  requestAnimationFrame(raf)
+}
+requestAnimationFrame(raf)
+
 // 01 Film-Grain Canvas
 const canvas = document.getElementById('canvas-grain');
 const ctx = canvas.getContext('2d');
@@ -30,7 +49,6 @@ const isTouchDevice = matchMedia('(hover: none)').matches;
 
 if (!isTouchDevice && cursor) {
     document.addEventListener('mousemove', (e) => {
-        // Adjust for center of the cursor element
         cursor.style.transform = `translate(calc(${e.clientX}px - 50%), calc(${e.clientY}px - 50%))`;
     });
 
@@ -44,20 +62,177 @@ if (!isTouchDevice && cursor) {
     document.addEventListener('mouseup', () => cursor.classList.remove('click'));
 }
 
-// 03 Navbar Scroll State & 06 Active Nav
+// 03 WebGL 3D Background (Three.js)
+const webglCanvas = document.getElementById('webgl-canvas');
+if (webglCanvas && typeof THREE !== 'undefined') {
+    const scene = new THREE.Scene();
+    const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+    const renderer = new THREE.WebGLRenderer({ canvas: webglCanvas, alpha: true, antialias: true });
+    
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    
+    const geometry = new THREE.IcosahedronGeometry(1, 1);
+    const material = new THREE.MeshStandardMaterial({ 
+        color: 0x111111,
+        wireframe: true,
+        transparent: true,
+        opacity: 0.15
+    });
+    
+    const particles = new THREE.Group();
+    for(let i=0; i<200; i++) {
+        const mesh = new THREE.Mesh(geometry, material);
+        mesh.position.x = (Math.random() - 0.5) * 40;
+        mesh.position.y = (Math.random() - 0.5) * 40;
+        mesh.position.z = (Math.random() - 0.5) * 40;
+        mesh.rotation.x = Math.random() * Math.PI;
+        mesh.rotation.y = Math.random() * Math.PI;
+        const scale = Math.random() * 0.5 + 0.1;
+        mesh.scale.set(scale, scale, scale);
+        particles.add(mesh);
+    }
+    scene.add(particles);
+    
+    const ambientLight = new THREE.AmbientLight(0xffffff, 0.2);
+    scene.add(ambientLight);
+    
+    const pointLight = new THREE.PointLight(0xC9A84C, 2);
+    pointLight.position.set(5, 5, 5);
+    scene.add(pointLight);
+    
+    camera.position.z = 10;
+    
+    let mouseX = 0;
+    let mouseY = 0;
+    let targetX = 0;
+    let targetY = 0;
+    const windowHalfX = window.innerWidth / 2;
+    const windowHalfY = window.innerHeight / 2;
+    
+    if (!isTouchDevice) {
+        document.addEventListener('mousemove', (e) => {
+            mouseX = (e.clientX - windowHalfX);
+            mouseY = (e.clientY - windowHalfY);
+        });
+    }
+    
+    const clock = new THREE.Clock();
+    function animate3D() {
+        requestAnimationFrame(animate3D);
+        
+        targetX = mouseX * 0.001;
+        targetY = mouseY * 0.001;
+        
+        particles.rotation.y += 0.05 * (targetX - particles.rotation.y);
+        particles.rotation.x += 0.05 * (targetY - particles.rotation.x);
+        particles.rotation.z += 0.001;
+        
+        // Slight parallax of the camera based on scroll
+        camera.position.y = -(window.scrollY * 0.005);
+        
+        renderer.render(scene, camera);
+    }
+    animate3D();
+    
+    window.addEventListener('resize', () => {
+        camera.aspect = window.innerWidth / window.innerHeight;
+        camera.updateProjectionMatrix();
+        renderer.setSize(window.innerWidth, window.innerHeight);
+    });
+}
+
+// 04 GSAP ScrollTrigger Integrations
+if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
+    gsap.registerPlugin(ScrollTrigger);
+
+    // Integrate GSAP with Lenis
+    lenis.on('scroll', ScrollTrigger.update)
+    gsap.ticker.add((time)=>{
+      lenis.raf(time * 1000)
+    })
+    gsap.ticker.lagSmoothing(0, 0)
+
+    // Hero Parallax
+    gsap.to('.hero h1, .hero-tagline', {
+        yPercent: 50,
+        ease: "none",
+        scrollTrigger: {
+            trigger: ".hero",
+            start: "top top",
+            end: "bottom top",
+            scrub: true
+        }
+    });
+
+    // Track Row parallax & reveals
+    document.querySelectorAll('.track-row').forEach(row => {
+        const img = row.querySelector('.track-img img, .track-img video');
+        const content = row.querySelector('.track-content');
+        
+        if (img) {
+            gsap.fromTo(img, 
+                { yPercent: -15, scale: 1.1 },
+                {
+                    yPercent: 15,
+                    ease: "none",
+                    scrollTrigger: {
+                        trigger: row,
+                        start: "top bottom",
+                        end: "bottom top",
+                        scrub: true
+                    }
+                }
+            );
+        }
+        
+        if (content) {
+            gsap.from(content.children, {
+                y: 50,
+                opacity: 0,
+                duration: 1,
+                stagger: 0.1,
+                ease: "power3.out",
+                scrollTrigger: {
+                    trigger: row,
+                    start: "top 80%"
+                }
+            });
+        }
+    });
+
+    // General Data-AOS reveals replaced with GSAP
+    document.querySelectorAll('[data-aos]').forEach(el => {
+        if(el.classList.contains('track-row') || el.closest('.track-content')) return;
+        
+        gsap.fromTo(el, 
+            { y: 50, opacity: 0 },
+            {
+                y: 0,
+                opacity: 1,
+                duration: 1,
+                ease: "power3.out",
+                scrollTrigger: {
+                    trigger: el,
+                    start: "top 85%"
+                }
+            }
+        );
+    });
+}
+
+// 05 Navbar Scroll State & Active Nav
 const nav = document.getElementById('nav');
 const sections = ['hero', 'vault', 'poem', 'film', 'about', 'connect'].map(id => document.getElementById(id)).filter(Boolean);
 const navLinks = document.querySelectorAll('.desktop-nav a.nl');
 
 window.addEventListener('scroll', () => {
-    // Navbar Scroll State
     if (window.scrollY > 40) {
         nav.classList.add('scrolled');
     } else {
         nav.classList.remove('scrolled');
     }
 
-    // Active Nav
     let currentId = 'hero';
     const scrollPos = window.scrollY + window.innerHeight * 0.4;
     
@@ -75,7 +250,7 @@ window.addEventListener('scroll', () => {
     });
 }, { passive: true });
 
-// 04 Burger Menu
+// 06 Burger Menu
 const burger = document.getElementById('burger');
 const mobNav = document.querySelector('.mob-nav');
 const mobLinks = document.querySelectorAll('.mob-link');
@@ -94,44 +269,16 @@ mobLinks.forEach(link => {
     });
 });
 
-// 05 Smooth Scroll
+// 07 Smooth Scroll Anchor Links (using Lenis)
 const anchorLinks = document.querySelectorAll('a.nl, .mob-link');
 anchorLinks.forEach(link => {
     link.addEventListener('click', (e) => {
         const href = link.getAttribute('href');
         if (href.startsWith('#')) {
             e.preventDefault();
-            const target = document.querySelector(href);
-            if (target) {
-                const offsetTop = target.offsetTop - 70;
-                window.scrollTo({
-                    top: offsetTop,
-                    behavior: 'smooth'
-                });
-            }
+            lenis.scrollTo(href, { offset: -70 });
         }
     });
-});
-
-// 07 Scroll Reveal
-const observerOptions = {
-    threshold: 0.12,
-    rootMargin: "0px 0px -50px 0px"
-};
-
-const observer = new IntersectionObserver((entries) => {
-    entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-            entry.target.classList.add('vis');
-            observer.unobserve(entry.target);
-        }
-    });
-}, observerOptions);
-
-document.querySelectorAll('[data-aos]').forEach((el, index) => {
-    // Staggered reveal based on index
-    el.style.transitionDelay = `${(index % 5) * 0.08}s`;
-    observer.observe(el);
 });
 
 // 08 Form Validation
@@ -148,7 +295,6 @@ if (form) {
         
         let isValid = true;
         
-        // Validate name
         if (!nameInput.value.trim()) {
             nameInput.parentElement.classList.add('err');
             isValid = false;
@@ -156,7 +302,6 @@ if (form) {
             nameInput.parentElement.classList.remove('err');
         }
 
-        // Validate email
         if (!emailRegex.test(emailInput.value.trim())) {
             emailInput.parentElement.classList.add('err');
             isValid = false;
@@ -192,9 +337,8 @@ window.addEventListener('scroll', () => {
     }
 }, { passive: true });
 
-btt.addEventListener('click', () => {
-    window.scrollTo({
-        top: 0,
-        behavior: 'smooth'
+if (btt) {
+    btt.addEventListener('click', () => {
+        lenis.scrollTo(0);
     });
-});
+}

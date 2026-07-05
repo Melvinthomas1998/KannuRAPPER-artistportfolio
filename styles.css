@@ -23,12 +23,22 @@
 
 body {
     margin: 0;
-    background: var(--bg);
+    background: transparent;
     color: var(--text);
     font-family: var(--font-body);
     font-size: 1.1rem;
     line-height: 1.6;
     overflow-x: hidden;
+}
+
+#webgl-canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: -5;
+    pointer-events: auto;
 }
 
 body.nav-open {
@@ -279,8 +289,7 @@ h1, h2, h3, h4, h5, h6, .brand, .display {
 .hero-bg {
     position: absolute;
     inset: 0;
-    background: url('assets/images/picasso.png') center/cover;
-    filter: brightness(0.35);
+    display: none;
     z-index: -2;
 }
 
