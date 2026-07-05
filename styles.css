@@ -707,13 +707,14 @@ h1, h2, h3, h4, h5, h6, .brand, .display {
 }
 
 .track-cta {
-    display: inline-flex; align-items: center; gap: 0.4rem;
+    display: inline-flex; align-items: center; gap: 0.6rem;
     font-family: var(--font-mono);
-    font-size: 0.65rem;
-    letter-spacing: 0.15em;
+    font-size: 1rem;
+    letter-spacing: 0.12em;
     text-transform: uppercase;
     color: var(--gold);
-    margin-top: 0.5rem;
+    margin-top: 0.8rem;
+    padding: 0.5rem 0;
     transition: gap 0.3s ease, color 0.3s ease;
 }
 .track-cta:hover { gap: 0.7rem; color: #e8c94a; }
