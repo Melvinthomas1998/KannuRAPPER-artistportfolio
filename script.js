@@ -359,3 +359,24 @@ if (btt) {
         lenis.scrollTo(0);
     });
 }
+
+/* ■■ POEM TOGGLE ■■ */
+(function initPoemToggle() {
+    const btn = document.getElementById('readPoemBtn');
+    const text = document.getElementById('poemText');
+    if (!btn || !text) return;
+    btn.addEventListener('click', () => {
+        const isOpen = text.classList.contains('open');
+        if (isOpen) {
+            text.classList.remove('open');
+            setTimeout(() => { text.style.display = 'none'; }, 400);
+            btn.innerHTML = '<i class="ri-book-open-line"></i> Read Poem';
+        } else {
+            text.style.display = 'block';
+            // Trigger reflow
+            void text.offsetWidth;
+            text.classList.add('open');
+            btn.innerHTML = '<i class="ri-close-line"></i> Close Poem';
+        }
+    });
+})();

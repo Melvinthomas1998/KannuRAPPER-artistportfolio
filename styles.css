@@ -717,3 +717,22 @@ h1, h2, h3, h4, h5, h6, .brand, .display {
     transition: gap 0.3s ease, color 0.3s ease;
 }
 .track-cta:hover { gap: 0.7rem; color: #e8c94a; }
+
+.poem-text-block {
+    display: none;
+    margin-top: 2rem;
+    padding: 2rem;
+    background: var(--bg-card);
+    border-left: 2px solid var(--gold);
+    color: #c4c4c4;
+    font-style: italic;
+    white-space: pre-wrap;
+    font-size: 1.05rem;
+    line-height: 1.8;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+}
+.poem-text-block.open {
+    display: block;
+    opacity: 1;
+}
