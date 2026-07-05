@@ -18,7 +18,7 @@
 
 * {
     box-sizing: border-box;
-    cursor: none;
+    
 }
 
 html {
@@ -26,6 +26,8 @@ html {
 }
 
 body {
+    background: radial-gradient(circle at top right, #1a1a1a, #0D0D0D) no-repeat center center fixed;
+    background-size: cover;
     margin: 0;
     background: transparent;
     color: var(--text);
@@ -55,7 +57,7 @@ img {
 }
 
 a, button {
-    cursor: none;
+    
 }
 
 a {
@@ -394,6 +396,8 @@ h1, h2, h3, h4, h5, h6, .brand, .display {
 }
 
 .track-img {
+    border-radius: 8px 8px 0 0;
+    overflow: hidden;
     aspect-ratio: 4/5;
     background: var(--surface);
     position: relative;
