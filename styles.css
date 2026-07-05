@@ -723,21 +723,48 @@ h1, h2, h3, h4, h5, h6, .brand, .display {
 }
 .track-cta:hover { gap: 0.7rem; color: #e8c94a; }
 
-.poem-text-block {
+
+
+
+.poem-modal {
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(13, 13, 13, 0.95);
+    z-index: 9999;
     display: none;
-    margin-top: 2rem;
-    padding: 2rem;
-    background: var(--bg-card);
-    border-left: 2px solid var(--gold);
-    color: #c4c4c4;
-    font-style: italic;
-    white-space: pre-wrap;
-    font-size: 1.05rem;
-    line-height: 1.8;
     opacity: 0;
     transition: opacity 0.4s ease;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    backdrop-filter: blur(10px);
 }
-.poem-text-block.open {
-    display: block;
+.poem-modal.open {
+    display: flex;
     opacity: 1;
+}
+.poem-modal-content {
+    background: var(--bg-card);
+    padding: 3rem;
+    border: 1px solid var(--gold);
+    max-width: 600px;
+    width: 100%;
+    max-height: 80vh;
+    overflow-y: auto;
+    border-radius: 12px;
+    position: relative;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+}
+.poem-modal-close {
+    position: absolute;
+    top: 1rem; right: 1.5rem;
+    font-size: 1.5rem;
+    color: var(--gold);
+    cursor: pointer;
+    background: none;
+    border: none;
+    transition: transform 0.3s ease;
+}
+.poem-modal-close:hover {
+    transform: scale(1.1);
 }

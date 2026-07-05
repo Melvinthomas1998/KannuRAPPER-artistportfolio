@@ -392,3 +392,34 @@ if (btt) {
         });
     });
 })();
+
+/* ■■ POEM MODAL TOGGLE ■■ */
+(function initPoemModal() {
+    const modal = document.getElementById('poemModal');
+    const closeBtn = document.getElementById('closePoemModal');
+    if (!modal) return;
+    
+    function openModal(e) {
+        if (e) e.preventDefault();
+        modal.style.display = 'flex';
+        void modal.offsetWidth;
+        modal.classList.add('open');
+        document.body.style.overflow = 'hidden'; // prevent bg scroll
+    }
+    
+    function closeModal() {
+        modal.classList.remove('open');
+        setTimeout(() => { modal.style.display = 'none'; document.body.style.overflow = ''; }, 400);
+    }
+    
+    document.querySelectorAll('a[href="#poem"], #readPoemBtn').forEach(btn => {
+        btn.addEventListener('click', openModal);
+    });
+    
+    if (closeBtn) closeBtn.addEventListener('click', closeModal);
+    
+    // Close on click outside
+    modal.addEventListener('click', (e) => {
+        if (e.target === modal) closeModal();
+    });
+})();
