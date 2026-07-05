@@ -21,6 +21,10 @@
     cursor: none;
 }
 
+html {
+    background: var(--bg);
+}
+
 body {
     margin: 0;
     background: transparent;
@@ -424,9 +428,10 @@ h1, h2, h3, h4, h5, h6, .brand, .display {
 }
 
 .track-desc {
-    color: var(--muted);
+    color: #f4f4f4;
     margin-bottom: 2rem;
     font-size: 1.15rem;
+    line-height: 1.7;
 }
 
 .visual-concept {
