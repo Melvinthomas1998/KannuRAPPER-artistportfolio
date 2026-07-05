@@ -205,11 +205,10 @@ if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
         }
         
         if (content) {
-            gsap.from(content.children, {
+            gsap.from(content, {
                 y: 50,
                 opacity: 0,
                 duration: 1,
-                stagger: 0.1,
                 ease: "power3.out",
                 scrollTrigger: {
                     trigger: row,
