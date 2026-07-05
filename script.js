@@ -62,44 +62,48 @@ if (!isTouchDevice && cursor) {
     document.addEventListener('mouseup', () => cursor.classList.remove('click'));
 }
 
-// 03 WebGL 3D Background (Three.js)
+// 03 WebGL 3D Background (Three.js) - Raw Honesty & Independent Music
+// A gritty, dynamic particle field representing soundwaves and raw energy
 const webglCanvas = document.getElementById('webgl-canvas');
 if (webglCanvas && typeof THREE !== 'undefined') {
     const scene = new THREE.Scene();
+    // Use fog to blend the particles into the dark void
+    scene.fog = new THREE.FogExp2(0x080808, 0.05);
+
     const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
     const renderer = new THREE.WebGLRenderer({ canvas: webglCanvas, alpha: true, antialias: true });
     
     renderer.setSize(window.innerWidth, window.innerHeight);
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
     
-    const geometry = new THREE.IcosahedronGeometry(1, 1);
-    const material = new THREE.MeshStandardMaterial({ 
-        color: 0x111111,
-        wireframe: true,
+    // Create raw particles (sound dust)
+    const particleCount = 4000;
+    const geometry = new THREE.BufferGeometry();
+    const positions = new Float32Array(particleCount * 3);
+    const scales = new Float32Array(particleCount);
+    
+    for (let i = 0; i < particleCount; i++) {
+        // Spread particles out to fill the screen
+        positions[i * 3] = (Math.random() - 0.5) * 60;
+        positions[i * 3 + 1] = (Math.random() - 0.5) * 60;
+        positions[i * 3 + 2] = (Math.random() - 0.5) * 60;
+        scales[i] = Math.random();
+    }
+    
+    geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+    geometry.setAttribute('scale', new THREE.BufferAttribute(scales, 1));
+    
+    // A gritty, raw gold material
+    const material = new THREE.PointsMaterial({
+        color: 0xC9A84C,
+        size: 0.15,
         transparent: true,
-        opacity: 0.15
+        opacity: 0.6,
+        blending: THREE.AdditiveBlending
     });
     
-    const particles = new THREE.Group();
-    for(let i=0; i<200; i++) {
-        const mesh = new THREE.Mesh(geometry, material);
-        mesh.position.x = (Math.random() - 0.5) * 40;
-        mesh.position.y = (Math.random() - 0.5) * 40;
-        mesh.position.z = (Math.random() - 0.5) * 40;
-        mesh.rotation.x = Math.random() * Math.PI;
-        mesh.rotation.y = Math.random() * Math.PI;
-        const scale = Math.random() * 0.5 + 0.1;
-        mesh.scale.set(scale, scale, scale);
-        particles.add(mesh);
-    }
+    const particles = new THREE.Points(geometry, material);
     scene.add(particles);
-    
-    const ambientLight = new THREE.AmbientLight(0xffffff, 0.2);
-    scene.add(ambientLight);
-    
-    const pointLight = new THREE.PointLight(0xC9A84C, 2);
-    pointLight.position.set(5, 5, 5);
-    scene.add(pointLight);
     
     camera.position.z = 10;
     
@@ -120,16 +124,26 @@ if (webglCanvas && typeof THREE !== 'undefined') {
     const clock = new THREE.Clock();
     function animate3D() {
         requestAnimationFrame(animate3D);
+        const time = clock.getElapsedTime() * 0.2;
         
-        targetX = mouseX * 0.001;
-        targetY = mouseY * 0.001;
+        targetX = mouseX * 0.0005;
+        targetY = mouseY * 0.0005;
         
+        // Slowly rotate the entire field like raw energy
         particles.rotation.y += 0.05 * (targetX - particles.rotation.y);
         particles.rotation.x += 0.05 * (targetY - particles.rotation.x);
-        particles.rotation.z += 0.001;
         
-        // Slight parallax of the camera based on scroll
-        camera.position.y = -(window.scrollY * 0.005);
+        // Undulate particles like a soundwave
+        const positions = particles.geometry.attributes.position.array;
+        for(let i = 0; i < particleCount; i++) {
+            const i3 = i * 3;
+            // Apply a sine wave based on X and time to simulate sound vibration
+            positions[i3 + 1] += Math.sin(time + positions[i3]) * 0.02;
+        }
+        particles.geometry.attributes.position.needsUpdate = true;
+        
+        // Parallax of the camera based on scroll
+        camera.position.y = -(window.scrollY * 0.003);
         
         renderer.render(scene, camera);
     }
@@ -170,6 +184,10 @@ if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
         const img = row.querySelector('.track-img img, .track-img video');
         const content = row.querySelector('.track-content');
         
+        // FIX: The row is hidden by [data-aos] in CSS. We must force it visible 
+        // so the content children can be animated independently.
+        gsap.set(row, { opacity: 1, y: 0, clearProps: "transform" });
+        
         if (img) {
             gsap.fromTo(img, 
                 { yPercent: -15, scale: 1.1 },
@@ -205,19 +223,19 @@ if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
     document.querySelectorAll('[data-aos]').forEach(el => {
         if(el.classList.contains('track-row') || el.closest('.track-content')) return;
         
-        gsap.fromTo(el, 
-            { y: 50, opacity: 0 },
-            {
-                y: 0,
-                opacity: 1,
-                duration: 1,
-                ease: "power3.out",
-                scrollTrigger: {
-                    trigger: el,
-                    start: "top 85%"
-                }
+        // Force the element visible so we control it entirely via GSAP
+        gsap.set(el, { opacity: 1, y: 0, clearProps: "transform" });
+
+        gsap.from(el, {
+            y: 50,
+            opacity: 0,
+            duration: 1,
+            ease: "power3.out",
+            scrollTrigger: {
+                trigger: el,
+                start: "top 85%"
             }
-        );
+        });
     });
 }
 
