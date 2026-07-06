@@ -360,38 +360,7 @@ if (btt) {
     });
 }
 
-/* ■■ POEM TOGGLE ■■ */
-(function initPoemToggle() {
-    const btn = document.getElementById('readPoemBtn');
-    const text = document.getElementById('poemText');
-    if (!btn || !text) return;
-    
-    function openPoem() {
-        if (text.classList.contains('open')) return;
-        text.style.display = 'block';
-        void text.offsetWidth;
-        text.classList.add('open');
-        if (btn) btn.innerHTML = '<i class="ri-close-line"></i> Close Poem';
-    }
 
-    btn.addEventListener('click', () => {
-        const isOpen = text.classList.contains('open');
-        if (isOpen) {
-            text.classList.remove('open');
-            setTimeout(() => { text.style.display = 'none'; }, 400);
-            btn.innerHTML = '<i class="ri-book-open-line"></i> Read Poem';
-        } else {
-            openPoem();
-        }
-    });
-
-    // Make hero link open poem as well
-    document.querySelectorAll('a[href="#poem"]').forEach(link => {
-        link.addEventListener('click', () => {
-            openPoem();
-        });
-    });
-})();
 
 /* ■■ POEM MODAL TOGGLE ■■ */
 (function initPoemModal() {
