@@ -330,7 +330,20 @@ if (form) {
             submitBtn.textContent = 'Sending...';
             submitBtn.style.pointerEvents = 'none';
             
-            setTimeout(() => {
+            fetch("https://formsubmit.co/ajax/introvertmtunofficial@gmail.com", {
+                method: "POST",
+                headers: { 
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json'
+                },
+                body: JSON.stringify({
+                    name: nameInput.value.trim(),
+                    email: emailInput.value.trim(),
+                    message: document.getElementById('message').value.trim()
+                })
+            })
+            .then(response => response.json())
+            .then(data => {
                 successMsg.style.display = 'block';
                 form.reset();
                 submitBtn.textContent = 'Transmit Message';
@@ -339,7 +352,12 @@ if (form) {
                 setTimeout(() => {
                     successMsg.style.display = 'none';
                 }, 6000);
-            }, 1400);
+            })
+            .catch(error => {
+                console.error(error);
+                submitBtn.textContent = 'Error. Try again';
+                submitBtn.style.pointerEvents = 'auto';
+            });
         }
     });
 }
