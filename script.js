@@ -412,7 +412,7 @@ if (btt) {
         setTimeout(() => { modal.style.display = 'none'; document.body.style.overflow = ''; }, 400);
     }
     
-    document.querySelectorAll('a[href="#poem"], #readPoemBtn').forEach(btn => {
+    document.querySelectorAll('#heroPoemBtn').forEach(btn => {
         btn.addEventListener('click', openModal);
     });
     
