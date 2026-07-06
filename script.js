@@ -124,26 +124,26 @@ if (webglCanvas && typeof THREE !== 'undefined') {
     const clock = new THREE.Clock();
     function animate3D() {
         requestAnimationFrame(animate3D);
-        const time = clock.getElapsedTime() * 0.2;
+        const time = clock.getElapsedTime() * 0.02; // Very slow time progression
         
         targetX = mouseX * 0.0005;
         targetY = mouseY * 0.0005;
         
         // Slowly rotate the entire field like raw energy
-        particles.rotation.y += 0.05 * (targetX - particles.rotation.y);
-        particles.rotation.x += 0.05 * (targetY - particles.rotation.x);
+        particles.rotation.y += 0.01 * (targetX - particles.rotation.y); // Slower mouse follow
+        particles.rotation.x += 0.01 * (targetY - particles.rotation.x);
         
         // Undulate particles like a soundwave
         const positions = particles.geometry.attributes.position.array;
         for(let i = 0; i < particleCount; i++) {
             const i3 = i * 3;
             // Apply a sine wave based on X and time to simulate sound vibration
-            positions[i3 + 1] += Math.sin(time + positions[i3]) * 0.02;
+            positions[i3 + 1] += Math.sin(time + positions[i3]) * 0.005; // Very subtle drift
         }
         particles.geometry.attributes.position.needsUpdate = true;
         
         // Parallax of the camera based on scroll
-        camera.position.y = -(window.scrollY * 0.003);
+        camera.position.y = -(window.scrollY * 0.001); // Subtle parallax
         
         renderer.render(scene, camera);
     }
